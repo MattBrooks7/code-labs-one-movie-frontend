@@ -19,6 +19,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LocalStorageService } from './shared/services/local-storage.service';
     FooterComponent,
     HomeComponent,
     MovieCardComponent,
-    SignupComponent
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
