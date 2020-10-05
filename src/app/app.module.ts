@@ -1,3 +1,4 @@
+import { AuthorizationHeaderService } from './shared/services/authorization-header.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -13,7 +14,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MovieService } from './shared/services/movie.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MovieCardComponent } from './home/movie-card/movie-card.component';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -43,7 +44,11 @@ import { LoginComponent } from './login/login.component';
   providers: [
     MovieService,
     UserService,
-    LocalStorageService
+    LocalStorageService,
+    {provide: HTTP_INTERCEPTORS, 
+    useClass: AuthorizationHeaderService,
+    multi: true
+  }
   ],
   bootstrap: [AppComponent]
 })
