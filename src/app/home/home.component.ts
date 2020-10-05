@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   retrieveAllMovies() {
     this.movieService.getAllMovies().subscribe(movies => {
-      if (movies){
+      if (movies) {
         this.movies = movies
       }
       debugger
