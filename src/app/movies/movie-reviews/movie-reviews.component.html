@@ -1,0 +1,30 @@
+
+  <div class="container mb-3">
+    <div class="row mt-5">
+        <div class="col-12 mt-5 mb-5">
+            <div *ngIf="movie" class="card p-4">
+                <div class="d-inline-flex w-100">
+                    <div class="flex">
+                        <h5 class="movie-title">Reviews for <span>{{movie.title}}</span></h5>
+                        <div class="row">
+                            <div *ngFor="let review of reviews" class="col-12">
+                                <app-single-review-card [review]="review"></app-single-review-card>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ml-auto flex movie-img">
+                        <img class="img img-fluid" [src]="movieImg" (error)="setDefaultPic()">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="currentUser" class="col-12 mb-5 d-inline-flex">
+            <div class="flex">
+                <button class="btn btn-primary" (click)="routeToWriteReview()">Write Review
+                    <fa-icon [icon]="['fas', 'star']" size="sm" class="ml-2 text-white"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

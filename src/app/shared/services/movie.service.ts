@@ -18,4 +18,8 @@ export class MovieService {
   getAllMovies(): Observable<Movie[]> {
     return this.http.get<Movie[]>('${this.movieApi}/index')
   }
+
+  getMovieById(params) {
+    return this.http.get<any>('${this.movieApi}/show?id=${params.id}')
+  }
 }

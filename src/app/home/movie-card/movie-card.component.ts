@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Movie } from 'src/app/shared/models/movie';
 
 @Component({
@@ -9,7 +10,9 @@ import { Movie } from 'src/app/shared/models/movie';
 export class MovieCardComponent implements OnInit, OnChanges {
   @Input() movie: Movie
   movieImg: string
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -21,5 +24,9 @@ export class MovieCardComponent implements OnInit, OnChanges {
   }
   setDefaultPic() {
     this.movieImg = 'assests/images/batman-vs-godzilla.png'
+  }
+
+  routeToViewMovie(id: number) {
+    this.router.navigate(['/movies/${id}'])
   }
 }
