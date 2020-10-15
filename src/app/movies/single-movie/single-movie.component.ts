@@ -3,7 +3,7 @@ import { User } from './../../shared/models/user';
 import { Review } from './../../shared/models/review';
 import { Movie } from 'src/app/shared/models/movie';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MovieService } from 'src/app/shared/services/movie.service';
 import { Subscription } from 'rxjs';
 
@@ -20,6 +20,7 @@ export class SingleMovieComponent implements OnInit, OnDestroy {
   currentUser: User
   private subs = new Subscription()
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private movieService: MovieService,
     private userService: UserService
@@ -69,7 +70,7 @@ export class SingleMovieComponent implements OnInit, OnDestroy {
   }
 
   routeToWriteReview() {
-
+    this.router.navigate(['reviews/${this.movie.id}/new'])
   }
 
   editMovie() {

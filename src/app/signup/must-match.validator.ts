@@ -17,7 +17,7 @@
           if (control.value !== matchingControl.value) {
               matchingControl.setErrors({ mustMatch: true });
           } else {
-              matchingControl.setErrors(null);
+              matchingControl.setErrors({});
           }
       }
   }

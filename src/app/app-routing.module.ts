@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { AddEditReviewComponent } from './reviews/add-edit-review/add-edit-review.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'movies/:id/reviews',
     component: MovieReviewsComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/:id/new',
+    component: AddEditReviewComponent,
     pathMatch: 'full'
   }
 ];
