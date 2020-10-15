@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MovieService } from 'src/app/shared/services/movie.service';
+import { error } from 'protractor';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-add-edit-review',
@@ -16,8 +18,8 @@ import { MovieService } from 'src/app/shared/services/movie.service';
 export class AddEditReviewComponent implements OnInit, OnDestroy {
   form: FormGroup
   formValues: any
-  submitting: false
-  hasError: false
+  submitting = false
+  hasError = false
   errorMsg: string
   currentUser: User
   movie: Movie
@@ -63,7 +65,7 @@ export class AddEditReviewComponent implements OnInit, OnDestroy {
     this.subs.add(
       this.movieService.getMovieById(params).subscribe(data => {
         if (data && data.movie) {
-          this.movie = data
+          this.movie = data.movie
           if (this.movie.image) {
             this.movieImg = this.movie.image
           } else {
@@ -101,6 +103,38 @@ export class AddEditReviewComponent implements OnInit, OnDestroy {
       this.submitting = false
       return
     }
+    const form = this.form.value
+    const params = {
+      user_id: this.currentUser.id,
+      movie_id: this.movie.id,
+      user_nickname: this.currentUser.nickname,
+      rating: form.starRating,
+      body: form.body
+    }
+    this.subs.add(
+      this.reviewService.createReview(params).subscribe(data => {
+        if (data) {
+          this.submitting = false
+          Swal.fire(
+            {
+              icon: 'success',
+              title: 'A new review has been successfully added!',
+              showConfirmButton: false,
+              timer: 2000
+            }
+          ).then(() => {
+            this.form.reset()
+          })
+        }
+       }, error => {
+          if (error) {
+            console.error(error)
+            this.submitting = false
+            this.hasError = true
+            this.errorMsg = 'Something went wrong while trying to create that review!'
+          }
+      })
+    )
   }
 
   cancel() {
