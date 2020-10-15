@@ -54,6 +54,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
+    debugger
     this.hasError = false
     this.submitting = true
     if (this.form.invalid) {
@@ -94,5 +95,4 @@ export class SignupComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subs.unsubscribe()
   }
-
 }
