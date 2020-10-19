@@ -68,7 +68,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       nickname: form.nickName,
       email: form.email,
       password: form.password,
-      password_confirmation: form.passwordConfirmation
+      password_confirmation: form.passwordConfirmation,
     }
     this.subs.add(
       this.userService.signup(params).subscribe(data => {
