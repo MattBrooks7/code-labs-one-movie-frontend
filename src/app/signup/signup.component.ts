@@ -56,9 +56,12 @@ export class SignupComponent implements OnInit, OnDestroy {
   submitForm() {
     this.hasError = false
     this.submitting = true
+    console.log(this.form.invalid)
+    console.log(this.form.controls.passwordConfirmation)
     if (this.form.invalid) {
       this.hasError = true
       this.submitting = false
+      console.log(this.form.errors)
       return
     }
     const form = this.form.value

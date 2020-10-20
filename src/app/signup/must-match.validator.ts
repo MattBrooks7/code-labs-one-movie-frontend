@@ -1,4 +1,3 @@
-
   import { FormGroup } from '@angular/forms';
 
   // custom validator to check that two fields match
@@ -8,7 +7,7 @@
           const matchingControl = formGroup.controls[matchingControlName];
           if (matchingControl.errors && !matchingControl.errors.mustMatch) {
               // return if another validator has already found an error on the matchingControl
-              return;
+              return false;
           }
           console.log('Password =', control.value)
           console.log('Password Confirmation =', matchingControl.value)
@@ -17,7 +16,8 @@
           if (control.value !== matchingControl.value) {
               matchingControl.setErrors({ mustMatch: true });
           } else {
-              matchingControl.setErrors({});
+              matchingControl.setErrors(null);
           }
+          return
       }
   }

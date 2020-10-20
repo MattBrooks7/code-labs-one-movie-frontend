@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie';
 import * as S3 from 'aws-sdk/clients/s3';
-import { Buffer } from 'buffer'
+import { Buffer } from 'buffer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class MovieService {
   constructor(
     private http: HttpClient
   ) {
-    this.movieApi = '$(environment.apiUrl)api/v1/movies'
+    this.movieApi = `$(environment.apiUrl)api/v1/movies`
   }
 
   getAllMovies(): Observable<Movie[]> {

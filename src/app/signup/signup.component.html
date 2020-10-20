@@ -67,13 +67,15 @@
           <input [ngClass]="{'is-invalid': hasError && form.get('passwordConfirmation').errors}" class="form-control"
             type="password" formControlName="passwordConfirmation" placeholder="xxxxxxxxx">
           <label class="form-error" >
-            <span class="text-danger" *ngIf="form.get('passwordConfirmation').errors['required']">
+            <span class="text-danger" *ngIf="hasError && form.get('passwordConfirmation').errors['required'] === true">
+              {{form.get('passwordConfirmation').errors |json}}
               Password Confirmation is required!
+              {{form.get('passwordConfirmation').touched |json}}
             </span>
-            <span class="text-danger" *ngIf="form.get('passwordConfirmation').errors['minlength']">
+            <span class="text-danger" *ngIf="hasError && form.get('passwordConfirmation').errors['minlength']">
                 Password Confirmation does not meet minimum length!
               </span>
-              <span class="text-danger" *ngIf="form.get('passwordConfirmation').errors['maxlength']">
+              <span class="text-danger" *ngIf="hasError && form.get('passwordConfirmation').errors['maxlength']">
                 Password Confirmation has a maximum of 10 characters!
               </span>
           </label>
